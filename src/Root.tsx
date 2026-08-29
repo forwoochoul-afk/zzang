@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import Hello from './pages/Hello.tsx';
+import HelloPage from './pages/HelloPage.tsx';
 
 // Lazy so the Supabase-backed App bundle (which throws at import time when
 // VITE_SUPABASE_* are unset) never loads on the #/hello route.
@@ -15,7 +15,7 @@ function Root() {
   }, []);
 
   if (hash === '#/hello') {
-    return <Hello />;
+    return <HelloPage />;
   }
 
   return (

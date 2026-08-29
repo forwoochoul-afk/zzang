@@ -3,9 +3,10 @@ import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => ({
-  // Project pages are served from https://<user>.github.io/zzang/
-  base: command === 'build' ? '/zzang/' : '/',
+export default defineConfig({
+  // GitHub Pages serves the project from /<repo>/; the deploy workflow sets
+  // VITE_BASE_PATH accordingly. Local dev and previews keep serving from /.
+  base: process.env.VITE_BASE_PATH ?? '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -15,4 +16,4 @@ export default defineConfig(({ command }) => ({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-}));
+});
